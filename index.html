@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tools-Lab 即時文字雲</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel input-panel" aria-labelledby="page-title">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">Tools-Lab</p>
+            <h1 id="page-title">即時文字雲</h1>
+          </div>
+          <div class="status" id="status">連線中</div>
+        </div>
+
+        <form id="word-form" class="word-form">
+          <label for="word-input">輸入關鍵字</label>
+          <div class="control-row">
+            <input
+              id="word-input"
+              name="word"
+              type="text"
+              maxlength="24"
+              autocomplete="off"
+              placeholder="例如：資安、SOP、維運"
+              required
+            />
+            <button type="submit" aria-label="送出關鍵字">
+              <span>送出</span>
+            </button>
+          </div>
+          <p class="hint">資料會寫入 Firebase Firestore 的 demo_records 測試集合。</p>
+        </form>
+
+        <div class="metrics" aria-label="統計">
+          <div>
+            <span id="total-count">0</span>
+            <small>總筆數</small>
+          </div>
+          <div>
+            <span id="unique-count">0</span>
+            <small>不同關鍵字</small>
+          </div>
+          <div>
+            <span id="top-word">-</span>
+            <small>最高頻</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel cloud-panel" aria-labelledby="cloud-title">
+        <div class="section-head">
+          <h2 id="cloud-title">文字雲</h2>
+          <button id="clear-button" class="secondary" type="button">清除本頁測試資料</button>
+        </div>
+        <div id="word-cloud" class="word-cloud" aria-live="polite">
+          <p class="empty">等待第一個關鍵字</p>
+        </div>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="recent-title">
+        <h2 id="recent-title">最近輸入</h2>
+        <ul id="recent-list" class="recent-list"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
